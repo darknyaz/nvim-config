@@ -1,6 +1,6 @@
 local cmd = vim.cmd
 
-return require('packer').startup(function()
+require('packer').startup(function()
     -- packer itself
     use 'wbthomason/packer.nvim'
 
@@ -15,12 +15,24 @@ return require('packer').startup(function()
         requires = {
           'kyazdani42/nvim-web-devicons', -- optional, for file icon
         },
-        config = function() require'nvim-tree'.setup {
-            view = {
-                width = 30,
-                side = "left"
-            }
-        } end,
-        tag = 'nightly' -- optional, updated every week. (see issue #1193)
+        tag = 'nightly', -- optional, updated every week. (see issue #1193)
     }
+
+    use {
+        'neovim/nvim-lspconfig',
+        requires = {
+            'williamboman/nvim-lsp-installer',
+        },
+    }
+
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.0',
+        requires = { 
+            'nvim-lua/plenary.nvim',
+        },
+    }
+
+    -- tree like code outline
+    use 'simrat39/symbols-outline.nvim'
 end)
+
